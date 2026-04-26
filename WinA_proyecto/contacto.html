@@ -1,0 +1,862 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CONTÁCTANOS | WIN.A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    :root {
+      --bg: var(--ivory);
+      --ink: var(--moon-black);
+      --card: var(--moon-black);
+      --light: var(--ivory);
+      --radius: 18px;
+      --line: rgba(29, 29, 27, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .contact-shell {
+      padding: 2rem 0 3rem;
+    }
+
+    .layout {
+      position: relative;
+      width: min(980px, 100%);
+      margin: 0 auto;
+      animation: fadeInUp 0.9s ease both;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: clamp(20px, 4vw, 34px);
+      align-items: end;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.9vw, 4.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      max-width: 9ch;
+      text-wrap: balance;
+    }
+
+    .social {
+      display: grid;
+      gap: 12px;
+      border-left: 4px solid var(--ink);
+      padding: 6px 0 6px 30px;
+      align-self: center;
+    }
+
+    .social h2 {
+      font-size: clamp(1.2rem, 2.1vw, 2rem);
+      line-height: 1;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .icons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-link {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--light);
+      text-decoration: none;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .social-link svg {
+      width: 30px;
+      height: 30px;
+      fill: currentColor;
+    }
+
+    .grid {
+      margin-top: clamp(32px, 8vw, 64px);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(190px, 1fr));
+      gap: clamp(18px, 3vw, 28px) clamp(22px, 3vw, 34px);
+    }
+
+    .card {
+      min-height: clamp(160px, 18vw, 194px);
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--light);
+      padding: 22px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      line-height: 0.98;
+      cursor: pointer;
+      transition: transform 180ms ease;
+      animation: popIn 0.55s ease-out both;
+    }
+
+    .grid .card:nth-child(2) {
+      animation-delay: 0.06s;
+    }
+
+    .grid .card:nth-child(3) {
+      animation-delay: 0.12s;
+    }
+
+    .grid .card:nth-child(4) {
+      animation-delay: 0.18s;
+    }
+
+    .grid .card:nth-child(5) {
+      animation-delay: 0.24s;
+    }
+
+    .grid .card:nth-child(6) {
+      animation-delay: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card.active {
+      transform: scale(1.06);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+    }
+
+    .form-wrap[hidden] {
+      display: none;
+    }
+
+    .form-wrap {
+      margin-top: clamp(22px, 4vw, 34px);
+      width: 100%;
+    }
+
+    .form-panel {
+      position: relative;
+      width: 100%;
+      margin-inline: auto;
+      border: 1.5px solid #87827b;
+      border-radius: 18px;
+      background: #d4cec4;
+      padding: 22px 30px 24px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 6px;
+      right: 14px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .form-body {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .field,
+    .field-inline {
+      display: grid;
+      gap: 2px;
+    }
+
+    .field-inline {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-inline .field {
+      gap: 2px;
+    }
+
+    .form-body label {
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: clamp(1rem, 1.35vw, 1.25rem);
+      line-height: 1;
+    }
+
+    .form-body input {
+      width: 100%;
+      height: 33px;
+      border: 0;
+      border-bottom: 1.5px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-family: "Baloo 2", sans-serif;
+      font-size: 1.02rem;
+      outline: none;
+      padding: 0 2px;
+    }
+
+    .send-btn {
+      justify-self: start;
+      margin-top: 2px;
+      padding: 2px 16px;
+      border: 1.8px solid #65615b;
+      border-radius: 999px;
+      background: #ded9d0;
+      color: var(--ink);
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .team-networks {
+      margin-top: clamp(30px, 5vw, 54px);
+    }
+
+    .team-title {
+      text-align: left;
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: clamp(1.9rem, 3.8vw, 3.1rem);
+      line-height: 0.95;
+      max-width: 12ch;
+      margin: 0;
+    }
+
+    .team-grid {
+      margin-top: clamp(18px, 3.5vw, 30px);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      gap: 18px;
+      align-items: end;
+    }
+
+    .team-member {
+      display: grid;
+      align-items: end;
+    }
+
+    .team-role {
+      font-family: "Baloo 2", sans-serif;
+      font-size: clamp(0.86rem, 1.25vw, 1rem);
+      line-height: 1;
+      min-height: 32px;
+      margin-bottom: 8px;
+    }
+
+    .team-pill {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--light);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: clamp(1rem, 1.6vw, 1.45rem);
+      line-height: 0.9;
+      padding: 8px;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .team-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .team-pill.active {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+    }
+
+    .team-links[hidden] {
+      display: none;
+    }
+
+    .team-links {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .team-link {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--card);
+      color: var(--light);
+      text-decoration: none;
+      transition: transform 160ms ease;
+    }
+
+    .team-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .team-link svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .team-link.behance {
+      font-family: "Archivo Black", "Baloo 2", sans-serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    @media (max-width: 860px) {
+      .header {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .social {
+        border-left: 0;
+        border-top: 4px solid var(--ink);
+        padding: 18px 0 0;
+        justify-self: start;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .field-inline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(130px, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-link {
+        width: 52px;
+        height: 52px;
+      }
+
+      .form-panel {
+        padding: 16px;
+      }
+
+      .close-modal {
+        right: 10px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-role {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header>
+    <div class="navbar">
+      <a class="navbar__logo" href="inicio.html" aria-label="Logo placeholder">LOGO</a>
+      <nav class="navbar__links" aria-label="Navegación principal">
+        <a class="navbar__link" href="inicio.html">INICIO</a>
+        <a class="navbar__link" href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a class="navbar__link" href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a class="navbar__link" href="servicios.html">SERVICIOS</a>
+        <a class="navbar__link" href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a class="navbar__link is-active" href="contacto.html">CONTÁCTANOS</a>
+      </nav>
+      <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false"
+        aria-controls="navbarDropdown">
+        <img src="img/menu.svg" alt="Menú" />
+      </button>
+    </div>
+    <div id="navbarDropdown" class="navbar__dropdown" aria-hidden="true">
+      <a href="inicio.html">INICIO</a>
+      <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+      <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+      <a href="servicios.html">SERVICIOS</a>
+      <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+      <a href="contacto.html">CONTÁCTANOS</a>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell contact-shell" tabindex="-1">
+    <section class="layout" aria-label="Opciones de formulario">
+      <header class="header">
+        <h1>Elige el tipo de formulario</h1>
+
+        <section class="social" aria-label="Redes sociales">
+          <h2>Nuestras redes</h2>
+          <div class="icons">
+            <a class="social-link" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path
+                  d="M7.25 2h9.5A5.25 5.25 0 0 1 22 7.25v9.5A5.25 5.25 0 0 1 16.75 22h-9.5A5.25 5.25 0 0 1 2 16.75v-9.5A5.25 5.25 0 0 1 7.25 2Zm0 1.8A3.45 3.45 0 0 0 3.8 7.25v9.5a3.45 3.45 0 0 0 3.45 3.45h9.5a3.45 3.45 0 0 0 3.45-3.45v-9.5a3.45 3.45 0 0 0-3.45-3.45h-9.5Zm10.15 1.7a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Zm-5.4 1.3a5.2 5.2 0 1 1 0 10.4 5.2 5.2 0 0 1 0-10.4Zm0 1.8a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="#" aria-label="X">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path
+                  d="M4 3h4.7l4.05 5.73L17.7 3H20l-6.1 7.05L20.25 21h-4.7l-4.46-6.3L5.7 21H3.4l6.53-7.54L4 3Zm3.36 1.8h-1l9.28 14.4h1.02L7.36 4.8Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path
+                  d="M13.37 22v-8.83h2.99l.45-3.45h-3.44V7.53c0-1 .28-1.69 1.76-1.69h1.88V2.76a25.7 25.7 0 0 0-2.73-.14c-2.7 0-4.55 1.65-4.55 4.69v2.41H6.7v3.45h3.03V22h3.64Z" />
+              </svg>
+            </a>
+          </div>
+        </section>
+      </header>
+
+      <section class="grid" aria-label="Tipos de formulario">
+        <button class="card" type="button" id="openGeneral">General</button>
+        <button class="card" type="button" id="open3d">3D</button>
+        <button class="card" type="button" id="openBranding">Branding</button>
+        <button class="card" type="button" id="openConcept">Concept Art</button>
+        <button class="card" type="button" id="openFoto">Fotografía</button>
+        <button class="card" type="button" id="openAudiovisual">Producción Audiovisual</button>
+      </section>
+
+      <div class="form-wrap" id="generalModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="generalTitle">
+          <button class="close-modal" type="button" id="closeGeneral" aria-label="Cerrar">X</button>
+          <h2 id="generalTitle" style="position:absolute;left:-9999px;">Formulario General</h2>
+          <form class="form-body" id="generalForm">
+            <div class="field"><label for="general-nombre">Nombre / Empresa:</label><input id="general-nombre"
+                type="text" /></div>
+            <div class="field"><label for="general-correo">Correo electronico:</label><input id="general-correo"
+                type="email" /></div>
+            <div class="field"><label for="general-fecha">Fecha de entrega deseada:</label><input id="general-fecha"
+                type="text" /></div>
+            <div class="field"><label for="general-tema">De que trata:</label><input id="general-tema" type="text" />
+            </div>
+            <div class="field-inline">
+              <div class="field"><label for="general-codigo">Codigo:</label><input id="general-codigo" type="text" />
+              </div>
+              <div class="field"><label for="general-telefono">Telefono:</label><input id="general-telefono"
+                  type="text" /></div>
+            </div>
+            <div class="field"><label for="general-mensaje">Mensaje adicional:</label><input id="general-mensaje"
+                type="text" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="threeDModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="threeDTitle">
+          <button class="close-modal" type="button" id="close3d" aria-label="Cerrar">X</button>
+          <h2 id="threeDTitle" style="position:absolute;left:-9999px;">Formulario 3D</h2>
+          <form class="form-body" id="threeDForm">
+            <div class="field"><label for="threed-nombre">Nombre:</label><input id="threed-nombre" type="text" /></div>
+            <div class="field"><label for="threed-consiste">¿En qué consiste?</label><input id="threed-consiste"
+                type="text" /></div>
+            <div class="field"><label for="threed-tipo">Tipo de modelo (Producto, Personaje,
+                Arquitectónico):</label><input id="threed-tipo" type="text" /></div>
+            <div class="field"><label for="threed-animacion">¿Requiere animación o solo imagen estática
+                (Render)?:</label><input id="threed-animacion" type="text" /></div>
+            <div class="field"><label for="threed-detalle">Nivel de detalle requerido
+                (Bajo/Realista/Estilizado):</label><input id="threed-detalle" type="text" /></div>
+            <div class="field"><label for="threed-mensaje">Mensaje adicional:</label><input id="threed-mensaje"
+                type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="threed-codigo">Codigo:</label><input id="threed-codigo" type="text" />
+              </div>
+              <div class="field"><label for="threed-telefono">Telefono:</label><input id="threed-telefono"
+                  type="text" /></div>
+            </div>
+            <div class="field"><label for="threed-correo">Correo electronico:</label><input id="threed-correo"
+                type="email" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="brandingModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="brandingTitle">
+          <button class="close-modal" type="button" id="closeBranding" aria-label="Cerrar">X</button>
+          <h2 id="brandingTitle" style="position:absolute;left:-9999px;">Formulario Branding</h2>
+          <form class="form-body" id="brandingForm">
+            <div class="field"><label for="branding-nombre">Nombre de la marca/proyecto:</label><input
+                id="branding-nombre" type="text" /></div>
+            <div class="field"><label for="branding-necesita">¿Que necesita?</label><input id="branding-necesita"
+                type="text" /></div>
+            <div class="field"><label for="branding-manual">¿Cuentas con un manual de marca previo o es desde
+                cero?</label><input id="branding-manual" type="text" /></div>
+            <div class="field"><label for="branding-publico">Describe tu público objetivo (edad, ubicación,
+                intereses)</label><input id="branding-publico" type="text" /></div>
+            <div class="field"><label for="branding-palabras">3 palabras que definan la personalidad de tu
+                marca.</label><input id="branding-palabras" type="text" /></div>
+            <div class="field"><label for="branding-correo">Correo electronico:</label><input id="branding-correo"
+                type="email" /></div>
+            <div class="field"><label for="branding-fecha">Fecha de entrega deseada:</label><input id="branding-fecha"
+                type="text" /></div>
+            <div class="field"><label for="branding-mensaje">Mensaje adicional:</label><input id="branding-mensaje"
+                type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="branding-codigo">Codigo:</label><input id="branding-codigo" type="text" />
+              </div>
+              <div class="field"><label for="branding-telefono">Telefono:</label><input id="branding-telefono"
+                  type="text" /></div>
+            </div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="conceptModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="conceptTitle">
+          <button class="close-modal" type="button" id="closeConcept" aria-label="Cerrar">X</button>
+          <h2 id="conceptTitle" style="position:absolute;left:-9999px;">Formulario Concept Art</h2>
+          <form class="form-body" id="conceptForm">
+            <div class="field"><label for="concept-consiste">¿En qué consiste?</label><input id="concept-consiste"
+                type="text" /></div>
+            <div class="field"><label for="concept-diseno">¿Qué necesitas diseñar? (Ambientes, personajes, vehículos,
+                props):</label><input id="concept-diseno" type="text" /></div>
+            <div class="field"><label for="concept-estilo">Estilo visual preferido (Ej: Cyberpunk, Fantasía,
+                Minimalista):</label><input id="concept-estilo" type="text" /></div>
+            <div class="field"><label for="concept-referencia">Referencia visual o link a tablero de
+                inspiración:</label><input id="concept-referencia" type="text" /></div>
+            <div class="field"><label for="concept-fecha">Fecha de entrega deseada:</label><input id="concept-fecha"
+                type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="concept-codigo">Codigo:</label><input id="concept-codigo" type="text" />
+              </div>
+              <div class="field"><label for="concept-telefono">Telefono:</label><input id="concept-telefono"
+                  type="text" /></div>
+            </div>
+            <div class="field"><label for="concept-correo">Correo electronico:</label><input id="concept-correo"
+                type="email" /></div>
+            <div class="field"><label for="concept-mensaje">Mensaje adicional:</label><input id="concept-mensaje"
+                type="text" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="fotoModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="fotoTitle">
+          <button class="close-modal" type="button" id="closeFoto" aria-label="Cerrar">X</button>
+          <h2 id="fotoTitle" style="position:absolute;left:-9999px;">Formulario Fotografía</h2>
+          <form class="form-body" id="fotoForm">
+            <div class="field"><label for="foto-consiste">¿En qué consiste?</label><input id="foto-consiste"
+                type="text" /></div>
+            <div class="field"><label for="foto-tipo">Tipo de sesión (E-commerce, Lifestyle, Gastronómica,
+                Retrato):</label><input id="foto-tipo" type="text" /></div>
+            <div class="field"><label for="foto-cantidad">Cantidad aproximada de fotos finales requeridas:</label><input
+                id="foto-cantidad" type="text" /></div>
+            <div class="field"><label for="foto-ubicacion">Ubicación de la sesión (Estudio o Exterior):</label><input
+                id="foto-ubicacion" type="text" /></div>
+            <div class="field"><label for="foto-fecha">Fecha de entrega deseada:</label><input id="foto-fecha"
+                type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="foto-codigo">Codigo:</label><input id="foto-codigo" type="text" /></div>
+              <div class="field"><label for="foto-telefono">Telefono:</label><input id="foto-telefono" type="text" />
+              </div>
+            </div>
+            <div class="field"><label for="foto-correo">Correo electronico:</label><input id="foto-correo"
+                type="email" /></div>
+            <div class="field"><label for="foto-mensaje">Mensaje adicional:</label><input id="foto-mensaje"
+                type="text" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="audiovisualModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="audiovisualTitle">
+          <button class="close-modal" type="button" id="closeAudiovisual" aria-label="Cerrar">X</button>
+          <h2 id="audiovisualTitle" style="position:absolute;left:-9999px;">Formulario Producción Audiovisual</h2>
+          <form class="form-body" id="audiovisualForm">
+            <div class="field"><label for="audiovisual-consiste">¿En qué consiste?</label><input
+                id="audiovisual-consiste" type="text" /></div>
+            <div class="field"><label for="audiovisual-duracion">Duración estimada del video:</label><input
+                id="audiovisual-duracion" type="text" /></div>
+            <div class="field"><label for="audiovisual-objetivo">Objetivo del video (Ventas, tutorial,
+                institucional):</label><input id="audiovisual-objetivo" type="text" /></div>
+            <div class="field"><label for="audiovisual-guion">¿Cuentas con guion o necesitas que nosotros lo
+                desarrollemos?</label><input id="audiovisual-guion" type="text" /></div>
+            <div class="field"><label for="audiovisual-fecha">Fecha de entrega deseada:</label><input
+                id="audiovisual-fecha" type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="audiovisual-codigo">Codigo:</label><input id="audiovisual-codigo"
+                  type="text" /></div>
+              <div class="field"><label for="audiovisual-telefono">Telefono:</label><input id="audiovisual-telefono"
+                  type="text" /></div>
+            </div>
+            <div class="field"><label for="audiovisual-correo">Correo electronico:</label><input id="audiovisual-correo"
+                type="email" /></div>
+            <div class="field"><label for="audiovisual-mensaje">Mensaje adicional:</label><input
+                id="audiovisual-mensaje" type="text" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <section class="team-networks" aria-label="Redes personales de los integrantes">
+        <h2 class="team-title">Redes personales<br />de los integrantes</h2>
+
+        <div class="team-grid">
+          <article class="team-member">
+            <p class="team-role">Directora de arte /<br />Fotografía</p>
+            <button class="team-pill" type="button" data-member="natalia"
+              aria-pressed="false">Natalia<br />Palma</button>
+          </article>
+
+          <article class="team-member">
+            <p class="team-role">Ilustrador</p>
+            <button class="team-pill" type="button" data-member="alvin" aria-pressed="false">Alvin<br />Ponce</button>
+          </article>
+
+          <article class="team-member">
+            <p class="team-role">Concept Artist</p>
+            <button class="team-pill" type="button" data-member="iris" aria-pressed="false">Iris
+              Del<br />Carpio</button>
+          </article>
+
+          <article class="team-member">
+            <p class="team-role">Productor Audiovisual</p>
+            <button class="team-pill" type="button" data-member="william"
+              aria-pressed="false">William<br />Pacchi</button>
+          </article>
+        </div>
+
+        <div class="team-links" id="teamLinks" hidden>
+          <a class="team-link" id="teamInstagram" href="#" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path
+                d="M7.25 2h9.5A5.25 5.25 0 0 1 22 7.25v9.5A5.25 5.25 0 0 1 16.75 22h-9.5A5.25 5.25 0 0 1 2 16.75v-9.5A5.25 5.25 0 0 1 7.25 2Zm0 1.8A3.45 3.45 0 0 0 3.8 7.25v9.5a3.45 3.45 0 0 0 3.45 3.45h9.5a3.45 3.45 0 0 0 3.45-3.45v-9.5a3.45 3.45 0 0 0-3.45-3.45h-9.5Zm10.15 1.7a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Zm-5.4 1.3a5.2 5.2 0 1 1 0 10.4 5.2 5.2 0 0 1 0-10.4Zm0 1.8a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8Z" />
+            </svg>
+          </a>
+          <a class="team-link behance" id="teamBehance" href="#" target="_blank" rel="noopener noreferrer"
+            aria-label="Behance">Bē</a>
+          <a class="team-link" id="teamWeb" href="#" target="_blank" rel="noopener noreferrer" aria-label="Sitio web">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path
+                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.93 9H16.9a15.4 15.4 0 0 0-1.1-5.02A8.23 8.23 0 0 1 19.93 11ZM12 4.07c.95 1.24 1.66 3.18 1.96 5.93H10.04c.3-2.75 1.01-4.69 1.96-5.93ZM4.07 13h3.03c.21 1.9.74 3.69 1.5 5.02A8.23 8.23 0 0 1 4.07 13Zm3.03-2H4.07A8.23 8.23 0 0 1 8.6 5.98 15.4 15.4 0 0 0 7.1 11Zm2.94 2h3.92c-.3 2.75-1.01 4.69-1.96 5.93-.95-1.24-1.66-3.18-1.96-5.93Zm5.86 0h3.03a8.23 8.23 0 0 1-4.53 5.02 15.4 15.4 0 0 0 1.5-5.02Zm-1.94-2c-.21-1.9-.74-3.69-1.5-5.02A8.23 8.23 0 0 1 19.93 11H16.9Z" />
+            </svg>
+          </a>
+          <a class="team-link" id="teamX" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path
+                d="M4 3h4.7l4.05 5.73L17.7 3H20l-6.1 7.05L20.25 21h-4.7l-4.46-6.3L5.7 21H3.4l6.53-7.54L4 3Zm3.36 1.8h-1l9.28 14.4h1.02L7.36 4.8Z" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo" aria-label="Logo placeholder">LOGO</div>
+      <div class="footer__links">
+        <a href="inicio.html">INICIO</a>
+        <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a href="contacto.html">CONTÁCTANOS</a>
+      </div>
+      <div class="footer__socials">
+        <span>Redes</span>
+        <div class="footer__socials-row">
+          <a class="footer__social" href="#" aria-label="Instagram"><img src="img/instagram.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="Facebook"><img src="img/facebook.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="LinkedIn"><img src="img/linkedin.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="WhatsApp"><img src="img/whatsapp.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+
+  <script>
+    const formsConfig = [
+      {
+        button: document.getElementById("openGeneral"),
+        modal: document.getElementById("generalModal"),
+        close: document.getElementById("closeGeneral"),
+        form: document.getElementById("generalForm")
+      },
+      {
+        button: document.getElementById("open3d"),
+        modal: document.getElementById("threeDModal"),
+        close: document.getElementById("close3d"),
+        form: document.getElementById("threeDForm")
+      },
+      {
+        button: document.getElementById("openBranding"),
+        modal: document.getElementById("brandingModal"),
+        close: document.getElementById("closeBranding"),
+        form: document.getElementById("brandingForm")
+      },
+      {
+        button: document.getElementById("openConcept"),
+        modal: document.getElementById("conceptModal"),
+        close: document.getElementById("closeConcept"),
+        form: document.getElementById("conceptForm")
+      },
+      {
+        button: document.getElementById("openFoto"),
+        modal: document.getElementById("fotoModal"),
+        close: document.getElementById("closeFoto"),
+        form: document.getElementById("fotoForm")
+      },
+      {
+        button: document.getElementById("openAudiovisual"),
+        modal: document.getElementById("audiovisualModal"),
+        close: document.getElementById("closeAudiovisual"),
+        form: document.getElementById("audiovisualForm")
+      }
+    ];
+
+    const teamCards = Array.from(document.querySelectorAll(".team-pill"));
+    const teamLinks = document.getElementById("teamLinks");
+    const teamInstagram = document.getElementById("teamInstagram");
+    const teamBehance = document.getElementById("teamBehance");
+    const teamWeb = document.getElementById("teamWeb");
+    const teamX = document.getElementById("teamX");
+
+    const teamSocials = {
+      natalia: { instagram: "#", behance: "#", web: "#", x: "#" },
+      alvin: { instagram: "#", behance: "#", web: "#", x: "#" },
+      iris: { instagram: "#", behance: "#", web: "#", x: "#" },
+      william: { instagram: "#", behance: "#", web: "#", x: "#" }
+    };
+
+    let activeMember = "";
+
+    function resetTeamSelection() {
+      teamCards.forEach((card) => {
+        card.classList.remove("active");
+        card.setAttribute("aria-pressed", "false");
+      });
+      teamLinks.hidden = true;
+      activeMember = "";
+    }
+
+    function activateTeam(memberKey, cardElement) {
+      const socials = teamSocials[memberKey];
+      if (!socials) return;
+
+      if (activeMember === memberKey) {
+        resetTeamSelection();
+        return;
+      }
+
+      teamCards.forEach((card) => {
+        const isActive = card.dataset.member === memberKey;
+        card.classList.toggle("active", isActive);
+        card.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      teamInstagram.href = socials.instagram;
+      teamBehance.href = socials.behance;
+      teamWeb.href = socials.web;
+      teamX.href = socials.x;
+
+      const hostCard = cardElement.closest(".team-member");
+      if (hostCard) {
+        hostCard.appendChild(teamLinks);
+      }
+
+      teamLinks.hidden = false;
+      activeMember = memberKey;
+    }
+
+    teamCards.forEach((card) => {
+      card.addEventListener("click", () => activateTeam(card.dataset.member, card));
+    });
+
+    function hideAllForms() {
+      formsConfig.forEach((item) => {
+        item.modal.hidden = true;
+        item.button.classList.remove("active");
+      });
+    }
+
+    function openForm(item) {
+      hideAllForms();
+      item.modal.hidden = false;
+      item.button.classList.add("active");
+      item.modal.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function closeForm(item) {
+      item.modal.hidden = true;
+      item.button.classList.remove("active");
+    }
+
+    formsConfig.forEach((item) => {
+      item.button.addEventListener("click", () => openForm(item));
+      item.close.addEventListener("click", () => closeForm(item));
+      item.form.addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      const anyVisible = formsConfig.some((item) => !item.modal.hidden);
+      if (event.key === "Escape" && anyVisible) {
+        hideAllForms();
+      }
+    });
+  </script>
+</body>
+
+</html>
