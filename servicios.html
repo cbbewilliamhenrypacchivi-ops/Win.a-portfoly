@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WIN.A | Servicios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .services-section {
+      position: relative;
+      padding: 110px 24px 100px;
+      isolation: isolate;
+    }
+
+    .services-shell {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin: 0 auto 54px;
+      text-align: center;
+      animation: revealUp 0.9s ease both;
+    }
+
+    h1 {
+      margin: 22px 0 14px;
+      font-family: inherit;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .section-header p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      line-height: 1.8;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(235, 228, 218, 0.98), rgba(235, 228, 218, 0.8)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+      cursor: pointer;
+      transform: translateY(16px);
+      opacity: 0;
+      animation: revealUp 0.8s ease forwards;
+      transition:
+        transform 0.38s ease,
+        box-shadow 0.38s ease,
+        border-color 0.38s ease,
+        background 0.38s ease;
+    }
+
+    .service-card:nth-child(2) { animation-delay: 0.08s; }
+    .service-card:nth-child(3) { animation-delay: 0.16s; }
+    .service-card:nth-child(4) { animation-delay: 0.24s; }
+    .service-card:nth-child(5) { animation-delay: 0.32s; }
+    .service-card:nth-child(6) { animation-delay: 0.4s; }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -18% -46% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.09), rgba(0, 0, 0, 0));
+      transition: transform 0.35s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(29, 29, 27, 0.18);
+    }
+
+    .service-card:hover::before {
+      transform: scale(1.08);
+    }
+
+    .service-card.is-open {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(0, 0, 0, 0.2);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(235, 228, 218, 0.96)),
+        var(--surface);
+      grid-column: span 2;
+      cursor: default;
+    }
+
+    .services-grid.has-open .service-card.is-open {
+      grid-column: 1 / -1;
+    }
+
+    .icon-wrap {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 18px;
+      color: var(--accent-deep);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.03));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .icon-wrap svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+    }
+
+    .service-card h2 {
+      margin: 0 0 12px;
+      font-family: inherit;
+      font-size: 1.32rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 0.98rem;
+    }
+
+    .service-summary {
+      flex-grow: 1;
+    }
+
+    .service-card button {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(235, 228, 218, 0.95);
+      border: 1px solid var(--line);
+      color: var(--moon-black);
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: gap 0.28s ease, background 0.28s ease, color 0.28s ease;
+    }
+
+    .service-card button:hover {
+      gap: 14px;
+      background: linear-gradient(135deg, var(--moon-black), rgba(45, 45, 43, 0.9));
+      color: var(--ivory);
+    }
+
+    .service-card.is-open button {
+      background: linear-gradient(135deg, var(--moon-black), rgba(45, 45, 43, 0.9));
+      color: var(--ivory);
+      border-color: var(--moon-black);
+    }
+
+    .service-card button span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .service-details {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      margin-top: 0;
+      transition: grid-template-rows 0.52s ease, opacity 0.34s ease, margin-top 0.34s ease;
+    }
+
+    .service-card.is-open .service-details {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 22px;
+    }
+
+    .service-details-inner {
+      overflow: hidden;
+    }
+
+    .service-window {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.9fr);
+      gap: 22px;
+      padding: 6px 2px 2px;
+      align-items: start;
+    }
+
+    .media-panel,
+    .contract-panel {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.05);
+    }
+
+    .media-panel {
+      padding: 18px;
+    }
+
+    .panel-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(29, 29, 27, 0.06);
+      color: var(--moon-black);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+      min-height: 280px;
+    }
+
+    .media-feature,
+    .media-stack article {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      min-height: 132px;
+      background:
+        linear-gradient(145deg, rgba(20, 20, 20, 0.94), rgba(78, 78, 78, 0.82)),
+        #151515;
+      color: #ffffff;
+      padding: 18px;
+      display: flex;
+      align-items: end;
+    }
+
+    .media-feature::before,
+    .media-stack article::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 34%);
+      pointer-events: none;
+    }
+
+    .media-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .media-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 92%;
+    }
+
+    .media-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .media-copy strong {
+      display: block;
+      font-size: 1.02rem;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .media-copy p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.55;
+      font-size: 0.9rem;
+    }
+
+    .contract-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contract-panel h3 {
+      margin: 0;
+      font-family: inherit;
+      font-size: 1.24rem;
+      letter-spacing: -0.03em;
+    }
+
+    .contract-panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .contract-meta {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .contract-meta span {
+      color: #202020;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.28s ease, background 0.28s ease, color 0.28s ease;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, var(--moon-black), rgba(45, 45, 43, 0.9));
+      color: var(--ivory);
+      border: 0;
+      flex: 1 1 190px;
+    }
+
+    .cta-primary:hover,
+    .cta-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-secondary {
+      color: var(--moon-black);
+      border: 1px solid var(--moon-black);
+      background: rgba(235, 228, 218, 0.94);
+      flex: 1 1 150px;
+    }
+
+    .service-details ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-details li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .service-details li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--moon-black);
+      transform: translateY(-50%);
+    }
+
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-section {
+        padding-top: 90px;
+      }
+
+      .service-card.is-open {
+        grid-column: 1 / -1;
+      }
+
+      .service-window {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-section {
+        padding: 78px 18px 72px;
+      }
+
+      .section-header {
+        margin-bottom: 36px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .service-card {
+        min-height: auto;
+        padding: 24px;
+      }
+
+      .service-card.is-open {
+        grid-column: auto;
+      }
+
+      .service-card p {
+        margin-bottom: 22px;
+      }
+
+      .media-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .media-feature,
+      .media-stack article {
+        min-height: 160px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .service-card {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <header>
+      <div class="navbar">
+        <a class="navbar__logo" href="inicio.html" aria-label="Logo placeholder">LOGO</a>
+        <nav class="navbar__links" aria-label="Navegación principal">
+          <a class="navbar__link" href="inicio.html">INICIO</a>
+          <a class="navbar__link" href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+          <a class="navbar__link" href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+          <a class="navbar__link is-active" href="servicios.html">SERVICIOS</a>
+          <a class="navbar__link" href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+          <a class="navbar__link" href="contacto.html">CONTÁCTANOS</a>
+        </nav>
+        <button
+          class="navbar__toggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="navbarDropdown"
+        >
+          <img src="img/menu.svg" alt="Menú" />
+        </button>
+      </div>
+      <div id="navbarDropdown" class="navbar__dropdown" aria-hidden="true">
+        <a href="inicio.html">INICIO</a>
+        <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a href="contacto.html">CONTÁCTANOS</a>
+      </div>
+    </header>
+
+    <main id="main" class="page-shell" tabindex="-1">
+      <section class="services-section" id="servicios">
+    <div class="services-shell">
+      <header class="section-header">
+        <h1>Servicios</h1>
+        <p>
+          Diseñamos experiencias visuales que conectan ideas, emoción y estrategia
+          para convertir cada proyecto en una presencia memorable.
+        </p>
+      </header>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 4 6.5v11L12 22l8-4.5v-11L12 2Z"/>
+              <path d="M12 22V11.8"/>
+              <path d="M20 6.5 12 11 4 6.5"/>
+            </svg>
+          </div>
+          <h2>Modelado 3D</h2>
+          <p class="service-summary">Representaciones tridimensionales de alta calidad para visualizar productos, espacios y conceptos con precisión estética.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Galeria del servicio</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Vista principal</span>
+                        <strong>Renders de producto y espacios</strong>
+                        <p>Area pensada para mostrar proyectos 3D destacados con gran impacto visual.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Detalle</span>
+                          <strong>Modelos para presentacion</strong>
+                          <p>Mockups y vistas tecnicas.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Portfolio</span>
+                          <strong>Escenas para campaña</strong>
+                          <p>Visuales listos para venta o branding.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Modelado de productos, mobiliario y espacios con acabado visual realista.</li>
+                    <li>Renders conceptuales para presentar ideas antes de la produccion final.</li>
+                    <li>Piezas 3D listas para campañas, presentaciones o portafolios comerciales.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Ideal para marcas, arquitecturas, lanzamientos y visualizacion de ideas complejas.</span>
+                    <span>Proceso guiado desde el brief hasta la entrega final del material.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 18V8.5A2.5 2.5 0 0 1 6.5 6H17"/>
+              <path d="M7 18h12a1 1 0 0 0 1-1V8"/>
+              <path d="M7 18a3 3 0 0 0 3 3h9"/>
+              <path d="M8.5 10.5h7"/>
+              <path d="M8.5 13.5H13"/>
+            </svg>
+          </div>
+          <h2>Branding</h2>
+          <p class="service-summary">Construimos identidades visuales y estrategias de marca que expresan personalidad, coherencia y diferenciación real.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Imagenes y logos</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Brand system</span>
+                        <strong>Logos, identidad y aplicaciones</strong>
+                        <p>Espacio para enseñar marcas realizadas, composiciones y piezas finales.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Logo</span>
+                          <strong>Construccion visual</strong>
+                          <p>Versiones, sellos y simbolos.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Aplicacion</span>
+                          <strong>Sistema de marca</strong>
+                          <p>Redes, papeleria y soportes.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Diseño de logotipo, sistema visual y lineamientos de marca claros.</li>
+                    <li>Definicion de tono, personalidad y narrativa para conectar con la audiencia.</li>
+                    <li>Aplicaciones visuales para redes, papeleria y soportes digitales.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Perfecto para negocios nuevos o marcas que necesitan reposicionarse con fuerza.</span>
+                    <span>El cliente puede revisar los trabajos y decidir avanzar desde esta misma ventana.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3 2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8L12 3Z"/>
+            </svg>
+          </div>
+          <h2>Concept Art</h2>
+          <p class="service-summary">Desarrollamos universos visuales e ideas creativas que ayudan a definir la esencia estética de cada proyecto.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Visual development</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Conceptos</span>
+                        <strong>Escenarios, personajes e ideas</strong>
+                        <p>Area para bocetos refinados, ilustraciones clave y desarrollo estetico.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Moodboard</span>
+                          <strong>Tono visual</strong>
+                          <p>Color, textura y atmosfera.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Proceso</span>
+                          <strong>Direccion creativa</strong>
+                          <p>Exploracion antes de producir.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Exploracion visual de personajes, escenarios y direcciones artisticas.</li>
+                    <li>Creacion de moodboards e ilustraciones para alinear la vision del proyecto.</li>
+                    <li>Propuestas creativas que facilitan decisiones antes de producir.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Ideal para videojuegos, marcas, campañas o proyectos que nacen desde una idea visual.</span>
+                    <span>La ventana expandida ayuda a vender el valor creativo antes de contratar.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="6" width="18" height="12" rx="2"/>
+              <path d="m10 10 5 2-5 2v-4Z"/>
+              <path d="M7 3v3M17 3v3"/>
+            </svg>
+          </div>
+          <h2>Producción Audiovisual</h2>
+          <p class="service-summary">Creamos contenido visual y multimedia con narrativa, ritmo y dirección creativa pensados para impactar.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Videos realizados</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Showreel</span>
+                        <strong>Videos, reels y piezas audiovisuales</strong>
+                        <p>Espacio para insertar videos realizados, trailers o presentaciones de campaña.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Clip</span>
+                          <strong>Contenido corto</strong>
+                          <p>Reels y anuncios dinamicos.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Film</span>
+                          <strong>Storytelling visual</strong>
+                          <p>Piezas para marca o lanzamiento.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Produccion de videos promocionales, reels y piezas de storytelling visual.</li>
+                    <li>Edicion, montaje y tratamiento estetico para contenido digital o institucional.</li>
+                    <li>Direccion creativa enfocada en ritmo, atmosfera y recordacion de marca.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Perfecto para marcas que necesitan contenido en movimiento con identidad propia.</span>
+                    <span>Aqui puedes mostrar videos reales y dejar el CTA listo para cerrar el servicio.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h4l2-3h4l2 3h4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/>
+              <circle cx="12" cy="13" r="3.5"/>
+            </svg>
+          </div>
+          <h2>Fotografía</h2>
+          <p class="service-summary">Capturamos imágenes con enfoque profesional para comunicar atmósferas, productos y relatos de forma auténtica.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Fotografias destacadas</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Galeria</span>
+                        <strong>Fotografia de producto y marca</strong>
+                        <p>Bloque pensado para exponer imagenes finales y series fotograficas seleccionadas.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Sesion</span>
+                          <strong>Retrato y lifestyle</strong>
+                          <p>Imagenes con direccion visual.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Catalogo</span>
+                          <strong>Producto y detalle</strong>
+                          <p>Visuales listos para venta.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Sesiones para producto, retrato, lifestyle y contenido de marca.</li>
+                    <li>Direccion visual y composicion pensadas para reforzar identidad.</li>
+                    <li>Entrega de imagenes optimizadas para web, campañas o catalogo.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Ideal para ecommerce, redes, editoriales visuales o presentacion de productos.</span>
+                    <span>La galeria sirve para que el cliente vea trabajos reales antes de contratar.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 19V9"/>
+              <path d="M12 19V5"/>
+              <path d="M19 19v-7"/>
+              <path d="M3 19h18"/>
+              <path d="m16 8 3 4 2-3"/>
+            </svg>
+          </div>
+          <h2>Campañas Publicitarias</h2>
+          <p class="service-summary">Diseñamos estrategias creativas de marketing que combinan concepto, alcance y resultados medibles.</p>
+          <button type="button" aria-expanded="false">
+            <span>Explorar</span> <span>&rarr;</span>
+          </button>
+          <div class="service-details">
+            <div class="service-details-inner">
+              <div class="service-window">
+                <div class="media-panel">
+                  <span class="panel-tag">Piezas de campaña</span>
+                  <div class="media-grid">
+                    <article class="media-feature">
+                      <div class="media-copy">
+                        <span class="media-kicker">Campaigns</span>
+                        <strong>Conceptos y activaciones visuales</strong>
+                        <p>Espacio para mostrar piezas de anuncios, lanzamientos y sistemas de campaña.</p>
+                      </div>
+                    </article>
+                    <div class="media-stack">
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Ads</span>
+                          <strong>Redes y pauta</strong>
+                          <p>Creatividades para conversion.</p>
+                        </div>
+                      </article>
+                      <article>
+                        <div class="media-copy">
+                          <span class="media-kicker">Launch</span>
+                          <strong>Piezas de lanzamiento</strong>
+                          <p>Mensajes y visuales alineados.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <div class="contract-panel">
+                  <span class="panel-tag">Lo que incluye</span>
+                  <ul>
+                    <li>Conceptualizacion de campañas con mensajes claros y enfoque emocional.</li>
+                    <li>Adaptacion de piezas para redes sociales, anuncios y lanzamientos.</li>
+                    <li>Estrategias visuales alineadas con objetivos de visibilidad y conversion.</li>
+                  </ul>
+                  <div class="contract-meta">
+                    <span>Recomendado para marcas que quieren vender mejor con creatividad y direccion visual.</span>
+                    <span>El CTA final deja preparado el paso a cotizacion o contratacion del servicio.</span>
+                  </div>
+                  <div class="cta-group">
+                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__logo" aria-label="Logo placeholder">LOGO</div>
+        <div class="footer__links">
+          <a href="inicio.html">INICIO</a>
+          <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+          <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+          <a href="servicios.html">SERVICIOS</a>
+          <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+          <a href="contacto.html">CONTÁCTANOS</a>
+        </div>
+        <div class="footer__socials">
+          <span>Redes</span>
+          <div class="footer__socials-row">
+            <a class="footer__social" href="#" aria-label="Instagram"><img src="img/instagram.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="Facebook"><img src="img/facebook.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="LinkedIn"><img src="img/linkedin.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="WhatsApp"><img src="img/whatsapp.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

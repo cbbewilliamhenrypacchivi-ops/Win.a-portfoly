@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PREGUNTAS FRECUENTES | WIN.A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header>
+    <div class="navbar">
+      <a class="navbar__logo" href="inicio.html" aria-label="Logo placeholder">LOGO</a>
+      <nav class="navbar__links" aria-label="Navegación principal">
+        <a class="navbar__link" href="inicio.html">INICIO</a>
+        <a class="navbar__link" href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a class="navbar__link" href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a class="navbar__link" href="servicios.html">SERVICIOS</a>
+        <a class="navbar__link is-active" href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a class="navbar__link" href="contacto.html">CONTÁCTANOS</a>
+      </nav>
+      <button
+        class="navbar__toggle"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="navbarDropdown"
+      >
+        <img src="img/menu.svg" alt="Menú" />
+      </button>
+    </div>
+    <div id="navbarDropdown" class="navbar__dropdown" aria-hidden="true">
+      <a href="inicio.html">INICIO</a>
+      <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+      <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+      <a href="servicios.html">SERVICIOS</a>
+      <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+      <a href="contacto.html">CONTÁCTANOS</a>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell" tabindex="-1">
+    <section class="faq-shell" aria-label="Sección de preguntas frecuentes">
+      <div class="faq-container">
+        <div class="header">
+          <h1>Preguntas<br />Frecuentes</h1>
+        </div>
+
+        <div class="faq-searchbar" aria-label="Buscador de preguntas frecuentes">
+          <label class="sr-only" for="faqSearch">Buscar</label>
+          <input id="faqSearch" class="faq-search" type="search" placeholder="Buscar pregunta..." autocomplete="off" />
+          <p id="faqEmpty" class="faq-empty" hidden>No se encontraron resultados.</p>
+        </div>
+
+        <div class="questions-wrapper">
+          <div class="questions-container">
+            <div class="question">
+              <h3>¿Cómo empiezo un proyecto con WIN.A?</h3>
+              <p>Escribinos por la página de contacto y contanos qué necesitás. Te vamos a pedir un brief simple (objetivo, estilo, fechas) y te proponemos una ruta de trabajo con tiempos y entregables.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Qué servicios ofrecen?</h3>
+              <p>Modelado 3D, branding, concept art, fotografía y producción audiovisual. Si tu idea mezcla varias áreas, armamos un paquete a medida.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Cuánto tarda un proyecto?</h3>
+              <p>Depende del alcance. Trabajos puntuales pueden resolverse en pocos días; proyectos completos suelen trabajar por etapas (concepto, producción, revisión y entrega final).</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Incluyen revisiones?</h3>
+              <p>Sí. Definimos desde el inicio cuántas rondas de cambios incluye el servicio para asegurar una entrega clara y sin sorpresas.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Qué entregables recibo?</h3>
+              <p>Según el servicio: renders, artes finales, manuales de marca, piezas para redes, fotografías editadas o videos exportados. Siempre entregamos en formatos listos para usar.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Trabajan con referencias y moodboards?</h3>
+              <p>Sí. Usamos referencias para alinear estilo, tono y objetivos. Si no tenés referencias, te proponemos opciones y las validamos antes de producir.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Cómo manejan el pago?</h3>
+              <p>Se coordina por etapas: normalmente un anticipo para iniciar y el resto contra entregas acordadas. Si necesitás factura o un plan distinto, lo conversamos.</p>
+            </div>
+
+            <div class="question">
+              <h3>¿Puedo pedir urgencias?</h3>
+              <p>Cuando el calendario lo permite, sí. Te confirmamos disponibilidad y un cronograma realista para cuidar la calidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Haznos la tuya</h2>
+          <form id="questionForm">
+            <div class="form-group">
+              <div class="form-control">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-control">
+                <label for="occupation">Ocupación</label>
+                <input type="text" id="occupation" name="occupation" required />
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <div class="form-control">
+                <label for="question">Tu pregunta</label>
+                <textarea id="question" name="question" required></textarea>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button type="submit" class="btn btn-submit">Enviar</button>
+              <button type="reset" class="btn btn-reset">Limpiar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo" aria-label="Logo placeholder">LOGO</div>
+      <div class="footer__links">
+        <a href="inicio.html">INICIO</a>
+        <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a href="contacto.html">CONTÁCTANOS</a>
+      </div>
+      <div class="footer__socials">
+        <span>Redes</span>
+        <div class="footer__socials-row">
+          <a class="footer__social" href="#" aria-label="Instagram"><img src="img/instagram.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="Facebook"><img src="img/facebook.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="LinkedIn"><img src="img/linkedin.svg" alt="" /></a>
+          <a class="footer__social" href="#" aria-label="WhatsApp"><img src="img/whatsapp.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
