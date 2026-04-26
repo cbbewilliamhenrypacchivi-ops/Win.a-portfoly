@@ -186,9 +186,9 @@ script_html = script_match.group(0)
 
 header_html = """    <header>
       <div class=\"navbar\">
-        <a class=\"navbar__logo\" href=\"inicio.html\" aria-label=\"Logo placeholder\">LOGO</a>
+        <a class=\"navbar__logo\" href=\"index.html\" aria-label=\"Logo placeholder\">LOGO</a>
         <nav class=\"navbar__links\" aria-label=\"Navegación principal\">
-          <a class=\"navbar__link\" href=\"inicio.html\">INICIO</a>
+          <a class=\"navbar__link\" href=\"index.html\">INICIO</a>
           <a class=\"navbar__link\" href=\"#\">SOBRE NOSOTROS</a>
           <a class=\"navbar__link\" href=\"nuestros-trabajos.html\">NUESTROS TRABAJOS</a>
           <a class=\"navbar__link is-active\" href=\"#servicios\">SERVICIOS</a>
@@ -206,7 +206,7 @@ header_html = """    <header>
         </button>
       </div>
       <div id=\"navbarDropdown\" class=\"navbar__dropdown\" aria-hidden=\"true\">
-        <a href=\"inicio.html\">INICIO</a>
+        <a href=\"index.html\">INICIO</a>
         <a href=\"#\">SOBRE NOSOTROS</a>
         <a href=\"nuestros-trabajos.html\">NUESTROS TRABAJOS</a>
         <a href=\"#servicios\">SERVICIOS</a>
@@ -219,7 +219,7 @@ footer_html = """    <footer class=\"footer\">
       <div class=\"footer__inner\">
         <div class=\"footer__logo\" aria-label=\"Logo placeholder\">LOGO</div>
         <div class=\"footer__links\">
-          <a href=\"inicio.html\">INICIO</a>
+          <a href=\"index.html\">INICIO</a>
           <a href=\"#\">SOBRE NOSOTROS</a>
           <a href=\"nuestros-trabajos.html\">NUESTROS TRABAJOS</a>
           <a href=\"#servicios\">SERVICIOS</a>

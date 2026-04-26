@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>INICIO | Agencia Creativa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <header>
+      <div class="navbar">
+        <a class="navbar__logo" href="index.html" aria-label="Logo placeholder">LOGO</a>
+        <nav class="navbar__links" aria-label="Navegaci�n principal">
+          <a class="navbar__link is-active" href="index.html">INICIO</a>
+          <a class="navbar__link" href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+          <a class="navbar__link" href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+          <a class="navbar__link" href="servicios.html">SERVICIOS</a>
+          <a class="navbar__link" href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+          <a class="navbar__link" href="contacto.html">CONTÁCTANOS</a>
+        </nav>
+        <button
+          class="navbar__toggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="navbarDropdown"
+        >
+          <img src="img/menu.svg" alt="Menú" />
+        </button>
+      </div>
+      <div id="navbarDropdown" class="navbar__dropdown" aria-hidden="true">
+        <a href="index.html">INICIO</a>
+        <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+        <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+        <a href="contacto.html">CONTÁCTANOS</a>
+      </div>
+    </header>
+
+    <main id="main" class="page-shell" tabindex="-1">
+      <section class="hero" aria-label="Hero principal">
+        <div class="hero__feature">
+          <div class="hero__feature-content">
+            <h1>Concibimos mundos visuales y campañas estratégicas.</h1>
+            <p>
+              Convertimos ideas complejas en experiencias visuales coherentes para
+              marcas que buscan trascender en cada punto de contacto.
+            </p>
+            <a class="btn" href="servicios.html">SERVICIOS</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicios" class="services" aria-label="Servicios principales">
+        <h2>Servicios</h2>
+        <div class="services__grid">
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Modelado 3d</h3>
+              <p>Diseñamos piezas digitales que combinan detalle técnico y sensibilidad creativa.</p>
+            </div>
+          </a>
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Branding</h3>
+              <p>Construimos identidades con sistema visual y tono para narrativas coherentes.</p>
+            </div>
+          </a>
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Concept Art</h3>
+              <p>Imaginamos mundos, personajes y atmósferas que inspiran campañas y rodajes.</p>
+            </div>
+          </a>
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Producción Audiovisual</h3>
+              <p>Coordinamos rodajes, edición y posproducción para relatos inmersivos.</p>
+            </div>
+          </a>
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Fotografía</h3>
+              <p>Capturamos gestos, texturas y atmósferas con control lumínico y riguroso encuadre.</p>
+            </div>
+          </a>
+          <a class="service-card" href="servicios.html">
+            <div class="service-card__image" aria-hidden="true"></div>
+            <div class="service-card__content">
+              <h3>Campañas publicitarias</h3>
+              <p>Planificamos campañas conceptuales que generan conversaciones realistas.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__logo" aria-label="Logo placeholder">LOGO</div>
+        <div class="footer__links">
+          <a href="index.html">INICIO</a>
+          <a href="sobre_nosotros.html">SOBRE NOSOTROS</a>
+          <a href="nuestros-trabajos.html">NUESTROS TRABAJOS</a>
+          <a href="servicios.html">SERVICIOS</a>
+          <a href="preguntas_frecuentes.html">PREGUNTAS FRECUENTES</a>
+          <a href="contacto.html">CONTÁCTANOS</a>
+        </div>
+        <div class="footer__socials">
+          <span>Redes</span>
+          <div class="footer__socials-row">
+            <a class="footer__social" href="#" aria-label="Instagram"><img src="img/instagram.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="Facebook"><img src="img/facebook.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="LinkedIn"><img src="img/linkedin.svg" alt="" /></a>
+            <a class="footer__social" href="#" aria-label="WhatsApp"><img src="img/whatsapp.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
