@@ -347,7 +347,7 @@ header {
 .service-card__image--concept-art {
     background-image:
         linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
-        url("../../img/fotos/concept-art.png");
+        url("../../img/fotos/concept-art.webp");
 }
 
 .service-card__image--produccion-audiovisual {
@@ -592,13 +592,13 @@ header {
 .job-card__gallery-item--alvin-2 {
     background-image:
         linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
-        url("../../img/fotos/alvin-2.png");
+        url("../../img/fotos/alvin-2.webp");
 }
 
 .job-card__gallery-item--alvin-3 {
     background-image:
         linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
-        url("../../img/fotos/alvin-3.png");
+        url("../../img/fotos/alvin-3.webp");
 }
 
 .job-card__gallery-item--iris-1 {
@@ -610,14 +610,13 @@ header {
 .job-card__gallery-item--iris-2 {
     background-image:
         linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
-        url("../../img/fotos/iris-2.dng"),
-        url("../../img/fotos/iris-1.JPG");
+        url("../../img/fotos/iris-2.webp"),
 }
 
 .job-card__gallery-item--iris-3 {
     background-image:
         linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
-        url("../../img/fotos/iris-3.png");
+        url("../../img/fotos/iris-3.webp");
 }
 
 .job-card__gallery-item--william-1 {
