@@ -134,6 +134,34 @@ header {
 .navbar__logo {
     font-weight: 700;
     letter-spacing: 0.2em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.site-logo {
+    display: block;
+    height: 28px;
+    width: auto;
+}
+
+.footer__logo .site-logo {
+    height: 36px;
+}
+
+.hero-logo {
+    display: block;
+    height: 34px;
+    width: auto;
+    margin: 0 auto 0.75rem;
+}
+
+.logo-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+    height: 14px;
+    width: auto;
+    opacity: 0.75;
+    filter: invert(1) grayscale(1) brightness(1.15);
 }
 
 .navbar__links {
@@ -297,7 +325,47 @@ header {
 
 .service-card__image {
     height: 140px;
-    background: linear-gradient(180deg, rgba(29, 29, 27, 0.95), rgba(45, 45, 43, 0.85)), #1D1D1B;
+    background-color: #1D1D1B;
+    background-image: linear-gradient(180deg, rgba(29, 29, 27, 0.95), rgba(45, 45, 43, 0.85));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.service-card__image--modelado3d {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/modelado3d.webp");
+}
+
+.service-card__image--branding {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/brand.png");
+}
+
+.service-card__image--concept-art {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/concept-art.png");
+}
+
+.service-card__image--produccion-audiovisual {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/produccion-audiovisual.avif");
+}
+
+.service-card__image--fotografia {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/fotografia.webp");
+}
+
+.service-card__image--campanas-publicitarias {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.65)),
+        url("../../img/fotos/campañas-publicitarias.jpg");
 }
 
 .service-card__content {
@@ -431,8 +499,36 @@ header {
 }
 
 .job-card__image {
-    background: linear-gradient(180deg, rgba(29, 29, 27, 0.95), rgba(45, 45, 43, 0.6)), #1D1D1B;
+    background-color: #1D1D1B;
+    background-image: linear-gradient(180deg, rgba(29, 29, 27, 0.75), rgba(45, 45, 43, 0.45));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     min-height: 260px;
+}
+
+.job-card__image--nata {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.55), rgba(45, 45, 43, 0.25)),
+        url("../../img/fotos/Nata.webp");
+}
+
+.job-card__image--alvin {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.55), rgba(45, 45, 43, 0.25)),
+        url("../../img/fotos/Alvin.webp");
+}
+
+.job-card__image--iris {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.55), rgba(45, 45, 43, 0.25)),
+        url("../../img/fotos/Iris.webp");
+}
+
+.job-card__image--william {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.55), rgba(45, 45, 43, 0.25)),
+        url("../../img/fotos/william.jpg");
 }
 
 .job-card__content {
@@ -462,7 +558,84 @@ header {
 .job-card__gallery-item {
     height: 120px;
     border-radius: 0.7rem;
-    background: linear-gradient(180deg, rgba(29, 29, 27, 0.95), rgba(45, 45, 43, 0.8)), #1d1d1b;
+    background-color: #1d1d1b;
+    background-image: linear-gradient(180deg, rgba(29, 29, 27, 0.6), rgba(45, 45, 43, 0.35));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.job-card__gallery-item--nata-1 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/nata-1.png");
+}
+
+.job-card__gallery-item--nata-2 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/nata-2.jpeg");
+}
+
+.job-card__gallery-item--nata-3 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/nata-3.png");
+}
+
+.job-card__gallery-item--alvin-1 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/alvin-1.png");
+}
+
+.job-card__gallery-item--alvin-2 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/alvin-2.png");
+}
+
+.job-card__gallery-item--alvin-3 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/alvin-3.png");
+}
+
+.job-card__gallery-item--iris-1 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/iris-1.JPG");
+}
+
+.job-card__gallery-item--iris-2 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/iris-2.dng"),
+        url("../../img/fotos/iris-1.JPG");
+}
+
+.job-card__gallery-item--iris-3 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/iris-3.png");
+}
+
+.job-card__gallery-item--william-1 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/william-1.jpg");
+}
+
+.job-card__gallery-item--william-2 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/william-2.avif");
+}
+
+.job-card__gallery-item--william-3 {
+    background-image:
+        linear-gradient(180deg, rgba(29, 29, 27, 0.45), rgba(45, 45, 43, 0.2)),
+        url("../../img/fotos/william-3.avif");
 }
 
 .job-card--open {

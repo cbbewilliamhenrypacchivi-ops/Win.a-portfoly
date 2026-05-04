@@ -44,6 +44,9 @@ detailToggles.forEach((button) => {
 const moreButtons = document.querySelectorAll('.job-card__more');
 moreButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
+    const href = button.getAttribute('href');
+    if (href && href !== '#') return;
+
     event.preventDefault();
     button.blur();
   });
