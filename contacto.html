@@ -61,6 +61,14 @@
       text-wrap: balance;
     }
 
+    .form-note {
+      margin-top: 14px;
+      max-width: 54ch;
+      font-size: clamp(0.92rem, 1.45vw, 1.02rem);
+      line-height: 1.6;
+      color: rgba(29, 29, 27, 0.86);
+    }
+
     .social {
       display: grid;
       gap: 12px;
@@ -435,7 +443,10 @@
   <main id="main" class="page-shell contact-shell" tabindex="-1">
     <section class="layout" aria-label="Opciones de formulario">
       <header class="header">
-        <h1>Elige el tipo de formulario</h1>
+        <div>
+          <h1>Elige el tipo de formulario</h1>
+          <p class="form-note">puedes llenar un formulario, pero para una reunión virtual o presencial para una cotización según tu tipo de proyecto, tiene el costo minimo de 10bs, tomar en cuenta, dicho pago se anula si el cliente contrata el servicio consultado*</p>
+        </div>
 
         <section class="social" aria-label="Redes sociales">
           <h2>Nuestras redes</h2>
@@ -463,64 +474,38 @@
       </header>
 
       <section class="grid" aria-label="Tipos de formulario">
-        <button class="card" type="button" id="openGeneral">General</button>
         <button class="card" type="button" id="open3d">3D</button>
         <button class="card" type="button" id="openBranding">Branding</button>
         <button class="card" type="button" id="openConcept">Concept Art</button>
         <button class="card" type="button" id="openFoto">Fotografía</button>
         <button class="card" type="button" id="openAudiovisual">Producción Audiovisual</button>
+        <button class="card" type="button" id="openCampanas">Campañas Publicitarias</button>
       </section>
-
-      <div class="form-wrap" id="generalModal" hidden>
-        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="generalTitle">
-          <button class="close-modal" type="button" id="closeGeneral" aria-label="Cerrar">X</button>
-          <h2 id="generalTitle" style="position:absolute;left:-9999px;">Formulario General</h2>
-          <form class="form-body" id="generalForm">
-            <div class="field"><label for="general-nombre">Nombre / Empresa:</label><input id="general-nombre"
-                type="text" /></div>
-            <div class="field"><label for="general-correo">Correo electronico:</label><input id="general-correo"
-                type="email" /></div>
-            <div class="field"><label for="general-fecha">Fecha de entrega deseada:</label><input id="general-fecha"
-                type="text" /></div>
-            <div class="field"><label for="general-tema">De que trata:</label><input id="general-tema" type="text" />
-            </div>
-            <div class="field-inline">
-              <div class="field"><label for="general-codigo">Codigo:</label><input id="general-codigo" type="text" />
-              </div>
-              <div class="field"><label for="general-telefono">Telefono:</label><input id="general-telefono"
-                  type="text" /></div>
-            </div>
-            <div class="field"><label for="general-mensaje">Mensaje adicional:</label><input id="general-mensaje"
-                type="text" /></div>
-            <button class="send-btn" type="submit">Enviar</button>
-          </form>
-        </section>
-      </div>
 
       <div class="form-wrap" id="threeDModal" hidden>
         <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="threeDTitle">
           <button class="close-modal" type="button" id="close3d" aria-label="Cerrar">X</button>
           <h2 id="threeDTitle" style="position:absolute;left:-9999px;">Formulario 3D</h2>
           <form class="form-body" id="threeDForm">
-            <div class="field"><label for="threed-nombre">Nombre:</label><input id="threed-nombre" type="text" /></div>
-            <div class="field"><label for="threed-consiste">¿En qué consiste?</label><input id="threed-consiste"
+            <div class="field"><label for="threed-nombre">Nombre:</label><input id="threed-nombre" name="nombre" type="text" required /></div>
+            <div class="field"><label for="threed-consiste">¿En qué consiste?</label><input id="threed-consiste" name="consiste"
                 type="text" /></div>
             <div class="field"><label for="threed-tipo">Tipo de modelo (Producto, Personaje,
-                Arquitectónico):</label><input id="threed-tipo" type="text" /></div>
+                Arquitectónico):</label><input id="threed-tipo" name="tipo" type="text" /></div>
             <div class="field"><label for="threed-animacion">¿Requiere animación o solo imagen estática
-                (Render)?:</label><input id="threed-animacion" type="text" /></div>
+                (Render)?:</label><input id="threed-animacion" name="animacion" type="text" /></div>
             <div class="field"><label for="threed-detalle">Nivel de detalle requerido
-                (Bajo/Realista/Estilizado):</label><input id="threed-detalle" type="text" /></div>
-            <div class="field"><label for="threed-mensaje">Mensaje adicional:</label><input id="threed-mensaje"
+                (Bajo/Realista/Estilizado):</label><input id="threed-detalle" name="detalle" type="text" /></div>
+            <div class="field"><label for="threed-mensaje">Mensaje adicional:</label><input id="threed-mensaje" name="mensaje"
                 type="text" /></div>
             <div class="field-inline">
-              <div class="field"><label for="threed-codigo">Codigo:</label><input id="threed-codigo" type="text" />
+              <div class="field"><label for="threed-codigo">Codigo:</label><input id="threed-codigo" name="codigo" type="text" />
               </div>
-              <div class="field"><label for="threed-telefono">Telefono:</label><input id="threed-telefono"
+              <div class="field"><label for="threed-telefono">Telefono:</label><input id="threed-telefono" name="telefono"
                   type="text" /></div>
             </div>
-            <div class="field"><label for="threed-correo">Correo electronico:</label><input id="threed-correo"
-                type="email" /></div>
+            <div class="field"><label for="threed-correo">Correo electronico:</label><input id="threed-correo" name="correo"
+                type="email" required /></div>
             <button class="send-btn" type="submit">Enviar</button>
           </form>
         </section>
@@ -532,26 +517,26 @@
           <h2 id="brandingTitle" style="position:absolute;left:-9999px;">Formulario Branding</h2>
           <form class="form-body" id="brandingForm">
             <div class="field"><label for="branding-nombre">Nombre de la marca/proyecto:</label><input
-                id="branding-nombre" type="text" /></div>
+                id="branding-nombre" name="nombre" type="text" required /></div>
             <div class="field"><label for="branding-necesita">¿Que necesita?</label><input id="branding-necesita"
-                type="text" /></div>
+                name="necesita" type="text" /></div>
             <div class="field"><label for="branding-manual">¿Cuentas con un manual de marca previo o es desde
-                cero?</label><input id="branding-manual" type="text" /></div>
+                cero?</label><input id="branding-manual" name="manual" type="text" /></div>
             <div class="field"><label for="branding-publico">Describe tu público objetivo (edad, ubicación,
-                intereses)</label><input id="branding-publico" type="text" /></div>
+                intereses)</label><input id="branding-publico" name="publico" type="text" /></div>
             <div class="field"><label for="branding-palabras">3 palabras que definan la personalidad de tu
-                marca.</label><input id="branding-palabras" type="text" /></div>
+                marca.</label><input id="branding-palabras" name="palabras" type="text" /></div>
             <div class="field"><label for="branding-correo">Correo electronico:</label><input id="branding-correo"
-                type="email" /></div>
+                name="correo" type="email" required /></div>
             <div class="field"><label for="branding-fecha">Fecha de entrega deseada:</label><input id="branding-fecha"
-                type="text" /></div>
+                name="fecha" type="text" /></div>
             <div class="field"><label for="branding-mensaje">Mensaje adicional:</label><input id="branding-mensaje"
-                type="text" /></div>
+                name="mensaje" type="text" /></div>
             <div class="field-inline">
-              <div class="field"><label for="branding-codigo">Codigo:</label><input id="branding-codigo" type="text" />
+              <div class="field"><label for="branding-codigo">Codigo:</label><input id="branding-codigo" name="codigo" type="text" />
               </div>
               <div class="field"><label for="branding-telefono">Telefono:</label><input id="branding-telefono"
-                  type="text" /></div>
+                  name="telefono" type="text" /></div>
             </div>
             <button class="send-btn" type="submit">Enviar</button>
           </form>
@@ -564,25 +549,25 @@
           <h2 id="conceptTitle" style="position:absolute;left:-9999px;">Formulario Concept Art</h2>
           <form class="form-body" id="conceptForm">
             <div class="field"><label for="concept-consiste">¿En qué consiste?</label><input id="concept-consiste"
-                type="text" /></div>
+                name="consiste" type="text" /></div>
             <div class="field"><label for="concept-diseno">¿Qué necesitas diseñar? (Ambientes, personajes, vehículos,
-                props):</label><input id="concept-diseno" type="text" /></div>
+                props):</label><input id="concept-diseno" name="diseno" type="text" /></div>
             <div class="field"><label for="concept-estilo">Estilo visual preferido (Ej: Cyberpunk, Fantasía,
-                Minimalista):</label><input id="concept-estilo" type="text" /></div>
+                Minimalista):</label><input id="concept-estilo" name="estilo" type="text" /></div>
             <div class="field"><label for="concept-referencia">Referencia visual o link a tablero de
-                inspiración:</label><input id="concept-referencia" type="text" /></div>
+                inspiración:</label><input id="concept-referencia" name="referencia" type="text" /></div>
             <div class="field"><label for="concept-fecha">Fecha de entrega deseada:</label><input id="concept-fecha"
-                type="text" /></div>
+                name="fecha" type="text" /></div>
             <div class="field-inline">
-              <div class="field"><label for="concept-codigo">Codigo:</label><input id="concept-codigo" type="text" />
+              <div class="field"><label for="concept-codigo">Codigo:</label><input id="concept-codigo" name="codigo" type="text" />
               </div>
               <div class="field"><label for="concept-telefono">Telefono:</label><input id="concept-telefono"
-                  type="text" /></div>
+                  name="telefono" type="text" /></div>
             </div>
             <div class="field"><label for="concept-correo">Correo electronico:</label><input id="concept-correo"
-                type="email" /></div>
+                name="correo" type="email" required /></div>
             <div class="field"><label for="concept-mensaje">Mensaje adicional:</label><input id="concept-mensaje"
-                type="text" /></div>
+                name="mensaje" type="text" /></div>
             <button class="send-btn" type="submit">Enviar</button>
           </form>
         </section>
@@ -594,24 +579,24 @@
           <h2 id="fotoTitle" style="position:absolute;left:-9999px;">Formulario Fotografía</h2>
           <form class="form-body" id="fotoForm">
             <div class="field"><label for="foto-consiste">¿En qué consiste?</label><input id="foto-consiste"
-                type="text" /></div>
+                name="consiste" type="text" /></div>
             <div class="field"><label for="foto-tipo">Tipo de sesión (E-commerce, Lifestyle, Gastronómica,
-                Retrato):</label><input id="foto-tipo" type="text" /></div>
+                Retrato):</label><input id="foto-tipo" name="tipo" type="text" /></div>
             <div class="field"><label for="foto-cantidad">Cantidad aproximada de fotos finales requeridas:</label><input
-                id="foto-cantidad" type="text" /></div>
+                id="foto-cantidad" name="cantidad" type="text" /></div>
             <div class="field"><label for="foto-ubicacion">Ubicación de la sesión (Estudio o Exterior):</label><input
-                id="foto-ubicacion" type="text" /></div>
+                id="foto-ubicacion" name="ubicacion" type="text" /></div>
             <div class="field"><label for="foto-fecha">Fecha de entrega deseada:</label><input id="foto-fecha"
-                type="text" /></div>
+                name="fecha" type="text" /></div>
             <div class="field-inline">
-              <div class="field"><label for="foto-codigo">Codigo:</label><input id="foto-codigo" type="text" /></div>
-              <div class="field"><label for="foto-telefono">Telefono:</label><input id="foto-telefono" type="text" />
+              <div class="field"><label for="foto-codigo">Codigo:</label><input id="foto-codigo" name="codigo" type="text" /></div>
+              <div class="field"><label for="foto-telefono">Telefono:</label><input id="foto-telefono" name="telefono" type="text" />
               </div>
             </div>
             <div class="field"><label for="foto-correo">Correo electronico:</label><input id="foto-correo"
-                type="email" /></div>
+                name="correo" type="email" required /></div>
             <div class="field"><label for="foto-mensaje">Mensaje adicional:</label><input id="foto-mensaje"
-                type="text" /></div>
+                name="mensaje" type="text" /></div>
             <button class="send-btn" type="submit">Enviar</button>
           </form>
         </section>
@@ -623,25 +608,57 @@
           <h2 id="audiovisualTitle" style="position:absolute;left:-9999px;">Formulario Producción Audiovisual</h2>
           <form class="form-body" id="audiovisualForm">
             <div class="field"><label for="audiovisual-consiste">¿En qué consiste?</label><input
-                id="audiovisual-consiste" type="text" /></div>
+                id="audiovisual-consiste" name="consiste" type="text" /></div>
             <div class="field"><label for="audiovisual-duracion">Duración estimada del video:</label><input
-                id="audiovisual-duracion" type="text" /></div>
+                id="audiovisual-duracion" name="duracion" type="text" /></div>
             <div class="field"><label for="audiovisual-objetivo">Objetivo del video (Ventas, tutorial,
-                institucional):</label><input id="audiovisual-objetivo" type="text" /></div>
+                institucional):</label><input id="audiovisual-objetivo" name="objetivo" type="text" /></div>
             <div class="field"><label for="audiovisual-guion">¿Cuentas con guion o necesitas que nosotros lo
-                desarrollemos?</label><input id="audiovisual-guion" type="text" /></div>
+                desarrollemos?</label><input id="audiovisual-guion" name="guion" type="text" /></div>
             <div class="field"><label for="audiovisual-fecha">Fecha de entrega deseada:</label><input
-                id="audiovisual-fecha" type="text" /></div>
+                id="audiovisual-fecha" name="fecha" type="text" /></div>
             <div class="field-inline">
               <div class="field"><label for="audiovisual-codigo">Codigo:</label><input id="audiovisual-codigo"
-                  type="text" /></div>
+                  name="codigo" type="text" /></div>
               <div class="field"><label for="audiovisual-telefono">Telefono:</label><input id="audiovisual-telefono"
-                  type="text" /></div>
+                  name="telefono" type="text" /></div>
             </div>
             <div class="field"><label for="audiovisual-correo">Correo electronico:</label><input id="audiovisual-correo"
-                type="email" /></div>
+                name="correo" type="email" required /></div>
             <div class="field"><label for="audiovisual-mensaje">Mensaje adicional:</label><input
-                id="audiovisual-mensaje" type="text" /></div>
+                id="audiovisual-mensaje" name="mensaje" type="text" /></div>
+            <button class="send-btn" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="form-wrap" id="campanasModal" hidden>
+        <section class="form-panel" role="dialog" aria-modal="true" aria-labelledby="campanasTitle">
+          <button class="close-modal" type="button" id="closeCampanas" aria-label="Cerrar">X</button>
+          <h2 id="campanasTitle" style="position:absolute;left:-9999px;">Formulario Campañas Publicitarias</h2>
+          <form class="form-body" id="campanasForm">
+            <div class="field"><label for="campanas-nombre">Nombre / Empresa:</label><input id="campanas-nombre"
+                name="nombre" type="text" required /></div>
+            <div class="field"><label for="campanas-producto">¿Qué producto/servicio deseas promocionar?</label><input
+                id="campanas-producto" name="producto" type="text" /></div>
+            <div class="field"><label for="campanas-objetivo">Objetivo de campaña (ventas, awareness,
+                lanzamiento):</label><input id="campanas-objetivo" name="objetivo" type="text" /></div>
+            <div class="field"><label for="campanas-publico">Público objetivo (edad, ubicación,
+                intereses):</label><input id="campanas-publico" name="publico" type="text" /></div>
+            <div class="field"><label for="campanas-canales">Canales deseados (Meta Ads, TikTok, Google,
+                exterior):</label><input id="campanas-canales" name="canales" type="text" /></div>
+            <div class="field"><label for="campanas-fecha">Fecha de inicio / entrega deseada:</label><input
+                id="campanas-fecha" name="fecha" type="text" /></div>
+            <div class="field-inline">
+              <div class="field"><label for="campanas-codigo">Codigo:</label><input id="campanas-codigo"
+                  name="codigo" type="text" /></div>
+              <div class="field"><label for="campanas-telefono">Telefono:</label><input id="campanas-telefono"
+                  name="telefono" type="text" /></div>
+            </div>
+            <div class="field"><label for="campanas-correo">Correo electronico:</label><input id="campanas-correo"
+                name="correo" type="email" required /></div>
+            <div class="field"><label for="campanas-mensaje">Mensaje adicional:</label><input id="campanas-mensaje"
+                name="mensaje" type="text" /></div>
             <button class="send-btn" type="submit">Enviar</button>
           </form>
         </section>
@@ -727,16 +744,14 @@
     </div>
   </footer>
 
+  <!-- Supabase Integration - ORDEN CORRECTO -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/forms-contacto.js"></script>
   <script src="assets/js/main.js" defer></script>
 
   <script>
     const formsConfig = [
-      {
-        button: document.getElementById("openGeneral"),
-        modal: document.getElementById("generalModal"),
-        close: document.getElementById("closeGeneral"),
-        form: document.getElementById("generalForm")
-      },
       {
         button: document.getElementById("open3d"),
         modal: document.getElementById("threeDModal"),
@@ -766,6 +781,12 @@
         modal: document.getElementById("audiovisualModal"),
         close: document.getElementById("closeAudiovisual"),
         form: document.getElementById("audiovisualForm")
+      },
+      {
+        button: document.getElementById("openCampanas"),
+        modal: document.getElementById("campanasModal"),
+        close: document.getElementById("closeCampanas"),
+        form: document.getElementById("campanasForm")
       }
     ];
 
@@ -853,6 +874,28 @@
         event.preventDefault();
       });
     });
+
+    const formHashMap = {
+      "3d": "open3d",
+      branding: "openBranding",
+      concept: "openConcept",
+      foto: "openFoto",
+      audiovisual: "openAudiovisual",
+      campanas: "openCampanas"
+    };
+
+    function openFromHash() {
+      const rawHash = (window.location.hash || "").replace("#", "").trim().toLowerCase();
+      const buttonId = formHashMap[rawHash];
+      if (!buttonId) return;
+
+      const item = formsConfig.find((entry) => entry.button && entry.button.id === buttonId);
+      if (!item) return;
+      openForm(item);
+    }
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
 
     document.addEventListener("keydown", (event) => {
       const anyVisible = formsConfig.some((item) => !item.modal.hidden);

@@ -57,9 +57,80 @@
         </p>
       </section>
 
-      <section id="servicios" class="job-cards" aria-label="Historias de trabajo">
-        <h2>Nuestros trabajos</h2>
-        <article class="job-card">
+      <section id="galeria" class="portfolio-gallery" aria-label="Galería de trabajos">
+        <h2>Galería</h2>
+        <div class="portfolio-gallery__grid">
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/_MG_1639.JPG" alt="Trabajo 1" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/art2.jpeg" alt="Trabajo 2" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/Captura%20de%20pantalla%202026-03-15%20235801.png" alt="Trabajo 3" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/Electobot.jpg" alt="Trabajo 4" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/GOPR2776%20(1).jpg" alt="Trabajo 5" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/IMG_20250531_165323_395.jpg" alt="Trabajo 6" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/Melodi-k-Digital.jpg" alt="Trabajo 7" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/OQ3A7S1.png" alt="Trabajo 8" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/PHOTOSHOP-1117.png" alt="Trabajo 9" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/post%20instagram.png" alt="Trabajo 10" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/The-last-of-us.jpg" alt="Trabajo 11" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/untitled2.png" alt="Trabajo 12" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+          <figure class="portfolio-gallery__item">
+            <button class="portfolio-gallery__btn" type="button">
+              <img src="img/galeria/VoiceZero.jpg" alt="Trabajo 13" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+        </div>
+      </section>
+
+      <section id="equipo" class="job-cards" aria-label="Perfiles de diseñadores">
+        <h2>Perfiles</h2>
+        <article class="job-card" id="natalia">
           <div class="job-card__image job-card__image--nata" aria-hidden="true"></div>
           <div class="job-card__content">
             <div>
@@ -79,7 +150,7 @@
           </div>
         </article>
 
-        <article class="job-card">
+        <article class="job-card" id="alvin">
           <div class="job-card__image job-card__image--alvin" aria-hidden="true"></div>
           <div class="job-card__content">
             <div>
@@ -100,7 +171,7 @@
           </div>
         </article>
 
-        <article class="job-card">
+        <article class="job-card" id="iris">
           <div class="job-card__image job-card__image--iris" aria-hidden="true"></div>
           <div class="job-card__content">
             <div>
@@ -120,7 +191,7 @@
           </div>
         </article>
 
-        <article class="job-card">
+        <article class="job-card" id="william">
           <div class="job-card__image job-card__image--william" aria-hidden="true"></div>
           <div class="job-card__content">
             <div>
@@ -140,6 +211,17 @@
           </div>
         </article>
       </section>
+
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox__backdrop" data-lightbox-close></div>
+        <div class="lightbox__frame" role="dialog" aria-modal="true" aria-label="Vista completa">
+          <button class="lightbox__close" type="button" aria-label="Cerrar" data-lightbox-close>×</button>
+          <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Anterior" data-lightbox-prev>‹</button>
+          <img class="lightbox__image" id="lightboxImage" alt="" />
+          <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Siguiente" data-lightbox-next>›</button>
+          <div class="lightbox__counter" id="lightboxCounter" aria-live="polite"></div>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">

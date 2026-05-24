@@ -266,15 +266,30 @@
       align-items: end;
     }
 
+    .media-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      transform: scale(1.02);
+      filter: saturate(0.95) contrast(1.05);
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .media-feature::before,
     .media-stack article::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
+        radial-gradient(circle at 30% 25%, rgba(0, 0, 0, 0.55), transparent 55%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 34%);
       pointer-events: none;
+      z-index: 0;
     }
 
     .media-stack {
@@ -545,7 +560,7 @@
       </header>
 
       <div class="services-grid">
-        <article class="service-card">
+        <article class="service-card" id="modelado-3d" data-form="3d">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2 4 6.5v11L12 22l8-4.5v-11L12 2Z"/>
@@ -565,6 +580,7 @@
                   <span class="panel-tag">Galeria del servicio</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/modelado3d/Sin%20t%C3%ADtulo-4.png" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Vista principal</span>
                         <strong>Renders de producto y espacios</strong>
@@ -573,6 +589,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/modelado3d/untitled1.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Detalle</span>
                           <strong>Modelos para presentacion</strong>
@@ -580,6 +597,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/modelado3d/untitled4.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Portfolio</span>
                           <strong>Escenas para campaña</strong>
@@ -601,8 +619,8 @@
                     <span>Proceso guiado desde el brief hasta la entrega final del material.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#3d" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>
@@ -610,7 +628,7 @@
           </div>
         </article>
 
-        <article class="service-card">
+        <article class="service-card" id="branding" data-form="branding">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 18V8.5A2.5 2.5 0 0 1 6.5 6H17"/>
@@ -632,6 +650,7 @@
                   <span class="panel-tag">Imagenes y logos</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/branding/Fortz.png" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Brand system</span>
                         <strong>Logos, identidad y aplicaciones</strong>
@@ -640,6 +659,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/branding/Electobot.jpg" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <img class="logo-kicker" src="img/logo-horizontal-icon.png" alt="Logo Win.A" />
                           <strong>Construccion visual</strong>
@@ -647,6 +667,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/branding/OQ3A7S1.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Aplicacion</span>
                           <strong>Sistema de marca</strong>
@@ -668,8 +689,8 @@
                     <span>El cliente puede revisar los trabajos y decidir avanzar desde esta misma ventana.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#branding" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>
@@ -677,7 +698,7 @@
           </div>
         </article>
 
-        <article class="service-card">
+        <article class="service-card" id="concept-art" data-form="concept">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="m12 3 2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8L12 3Z"/>
@@ -695,6 +716,7 @@
                   <span class="panel-tag">Visual development</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/conceptArt/brujo.png" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Conceptos</span>
                         <strong>Escenarios, personajes e ideas</strong>
@@ -703,6 +725,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/conceptArt/a.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Moodboard</span>
                           <strong>Tono visual</strong>
@@ -710,6 +733,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/conceptArt/g.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Proceso</span>
                           <strong>Direccion creativa</strong>
@@ -731,8 +755,8 @@
                     <span>La ventana expandida ayuda a vender el valor creativo antes de contratar.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#concept" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>
@@ -740,7 +764,7 @@
           </div>
         </article>
 
-        <article class="service-card">
+        <article class="service-card" id="produccion-audiovisual" data-form="audiovisual">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="6" width="18" height="12" rx="2"/>
@@ -760,6 +784,7 @@
                   <span class="panel-tag">Videos realizados</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/produccionAudiovisual/Documental-Capture.jpg" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Showreel</span>
                         <strong>Videos, reels y piezas audiovisuales</strong>
@@ -768,6 +793,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/produccionAudiovisual/eres%20soy%20y%20somos.avif" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Clip</span>
                           <strong>Contenido corto</strong>
@@ -775,6 +801,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/produccionAudiovisual/hace%20calor.avif" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Film</span>
                           <strong>Storytelling visual</strong>
@@ -796,8 +823,8 @@
                     <span>Aqui puedes mostrar videos reales y dejar el CTA listo para cerrar el servicio.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#audiovisual" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>
@@ -805,7 +832,7 @@
           </div>
         </article>
 
-        <article class="service-card">
+        <article class="service-card" id="fotografia" data-form="foto">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 8h4l2-3h4l2 3h4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/>
@@ -824,6 +851,7 @@
                   <span class="panel-tag">Fotografias destacadas</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/fotografia/IMG_20250611_100333_366.jpg" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Galeria</span>
                         <strong>Fotografia de producto y marca</strong>
@@ -832,6 +860,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/fotografia/post-instagram-5.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Sesion</span>
                           <strong>Retrato y lifestyle</strong>
@@ -839,6 +868,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/fotografia/IMG_20250417_123234_082.jpg" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Catalogo</span>
                           <strong>Producto y detalle</strong>
@@ -860,8 +890,8 @@
                     <span>La galeria sirve para que el cliente vea trabajos reales antes de contratar.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#foto" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>
@@ -869,7 +899,7 @@
           </div>
         </article>
 
-        <article class="service-card">
+        <article class="service-card" id="campanas-publicitarias" data-form="campanas">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 19V9"/>
@@ -891,6 +921,7 @@
                   <span class="panel-tag">Piezas de campaña</span>
                   <div class="media-grid">
                     <article class="media-feature">
+                      <img class="media-bg" src="img/servicios/campa%C3%B1as%20publicitarias/The-last-of-us.jpg" alt="" loading="lazy" decoding="async" />
                       <div class="media-copy">
                         <span class="media-kicker">Campaigns</span>
                         <strong>Conceptos y activaciones visuales</strong>
@@ -899,6 +930,7 @@
                     </article>
                     <div class="media-stack">
                       <article>
+                        <img class="media-bg" src="img/servicios/campa%C3%B1as%20publicitarias/Free_Flyer_Mockup_1.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Ads</span>
                           <strong>Redes y pauta</strong>
@@ -906,6 +938,7 @@
                         </div>
                       </article>
                       <article>
+                        <img class="media-bg" src="img/servicios/campa%C3%B1as%20publicitarias/POSTER%20PARED%202.png" alt="" loading="lazy" decoding="async" />
                         <div class="media-copy">
                           <span class="media-kicker">Launch</span>
                           <strong>Piezas de lanzamiento</strong>
@@ -927,8 +960,8 @@
                     <span>El CTA final deja preparado el paso a cotizacion o contratacion del servicio.</span>
                   </div>
                   <div class="cta-group">
-                    <a class="cta-primary" href="contacto.html" data-service-link>Quiero este servicio</a>
-                    <a class="cta-secondary" href="nuestros-trabajos.html" data-service-link>Ver trabajos</a>
+                    <a class="cta-primary" href="contacto.html#campanas" data-service-link>Quiero este servicio</a>
+                    <a class="cta-secondary" href="nuestros-trabajos.html#galeria" data-service-link>Ver trabajos</a>
                   </div>
                 </div>
               </div>

@@ -122,6 +122,21 @@
         color: rgba(235, 228, 218, 0.9);
       }
 
+      .member-link {
+        color: rgba(235, 228, 218, 0.94);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.2rem 0.25rem;
+        border-radius: 10px;
+      }
+
+      .member-link:hover,
+      .member-link:focus-visible {
+        text-decoration: underline;
+        background: rgba(235, 228, 218, 0.08);
+      }
+
       .portfolio-btn {
         border: 0;
         border-radius: 999px;
@@ -242,8 +257,13 @@
               <img src="img/fotos/foto-integrantes.jpg" alt="Integrantes de Win.A" loading="lazy" />
             </div>
             <div class="members-footer">
-              <p>Iris Del Carpio<br />William Pacchi<br />Natalia Palma<br />Alvin Ponce</p>
-              <a class="portfolio-btn" href="nuestros-trabajos.html">VER PORTAFOLIOS</a>
+              <p>
+                <a class="member-link" href="nuestros-trabajos.html#iris">Iris Del Carpio</a><br />
+                <a class="member-link" href="nuestros-trabajos.html#william">William Pacchi</a><br />
+                <a class="member-link" href="nuestros-trabajos.html#natalia">Natalia Palma</a><br />
+                <a class="member-link" href="nuestros-trabajos.html#alvin">Alvin Ponce</a>
+              </p>
+              <a class="portfolio-btn" href="nuestros-trabajos.html#equipo">VER PORTAFOLIOS</a>
             </div>
           </article>
 
