@@ -91,9 +91,12 @@ if (servicesGrid && serviceCards.length) {
   const isServicesLayout = serviceCards.some((card) => card.querySelector('.service-details'));
 
   if (isServicesLayout) {
+    const serviceOpeners = new Map();
+
     serviceCards.forEach((card) => {
       const button = card.querySelector('button');
       const label = button ? button.querySelector('span:first-child') : null;
+      const serviceId = (card.getAttribute('id') || card.dataset.service || '').trim();
 
       if (button) {
         button.setAttribute('aria-expanded', 'false');
@@ -134,6 +137,10 @@ if (servicesGrid && serviceCards.length) {
         }, 120);
       };
 
+      if (serviceId) {
+        serviceOpeners.set(serviceId, toggleCard);
+      }
+
       card.addEventListener('click', (event) => {
         if (event.target.closest('a')) return;
         if (event.target.closest('button')) return;
@@ -147,5 +154,117 @@ if (servicesGrid && serviceCards.length) {
         });
       }
     });
+
+    const openFromHash = () => {
+      const hash = (window.location.hash || '').replace('#', '').trim();
+      if (!hash) return;
+      const opener = serviceOpeners.get(hash);
+      if (opener) opener();
+    };
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
   }
+}
+
+const galleryButtons = Array.from(document.querySelectorAll('.portfolio-gallery__btn'));
+if (galleryButtons.length) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const closeTargets = lightbox ? Array.from(lightbox.querySelectorAll('[data-lightbox-close]')) : [];
+  const prevButton = lightbox ? lightbox.querySelector('[data-lightbox-prev]') : null;
+  const nextButton = lightbox ? lightbox.querySelector('[data-lightbox-next]') : null;
+
+  const images = galleryButtons
+    .map((btn) => btn.querySelector('img'))
+    .filter(Boolean)
+    .map((img) => ({
+      src: img.getAttribute('src') || '',
+      alt: img.getAttribute('alt') || ''
+    }))
+    .filter((item) => item.src.length > 0);
+
+  let activeIndex = 0;
+  let lastFocusedElement = null;
+
+  const isOpen = () => lightbox && lightbox.classList.contains('is-open');
+
+  const clampIndex = (value) => {
+    if (!images.length) return 0;
+    const max = images.length - 1;
+    if (value < 0) return max;
+    if (value > max) return 0;
+    return value;
+  };
+
+  const render = () => {
+    if (!lightbox || !lightboxImage || !lightboxCounter) return;
+    const item = images[activeIndex];
+    if (!item) return;
+
+    lightboxImage.src = item.src;
+    lightboxImage.alt = item.alt;
+    lightboxCounter.textContent = `Imagen ${activeIndex + 1} de ${images.length}`;
+  };
+
+  const open = (index) => {
+    if (!lightbox || !images.length) return;
+    activeIndex = clampIndex(index);
+    lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    render();
+
+    const focusTarget = lightbox.querySelector('[data-lightbox-next]') || lightbox.querySelector('[data-lightbox-close]');
+    if (focusTarget instanceof HTMLElement) {
+      focusTarget.focus();
+    }
+  };
+
+  const close = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    if (lastFocusedElement) lastFocusedElement.focus();
+  };
+
+  const goPrev = () => {
+    activeIndex = clampIndex(activeIndex - 1);
+    render();
+  };
+
+  const goNext = () => {
+    activeIndex = clampIndex(activeIndex + 1);
+    render();
+  };
+
+  galleryButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => open(index));
+  });
+
+  closeTargets.forEach((target) => target.addEventListener('click', close));
+  if (prevButton) prevButton.addEventListener('click', goPrev);
+  if (nextButton) nextButton.addEventListener('click', goNext);
+
+  document.addEventListener('keydown', (event) => {
+    if (!isOpen()) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close();
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goPrev();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      goNext();
+    }
+  });
 }
