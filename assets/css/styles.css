@@ -60,8 +60,13 @@ body {
     max-width: 1050px;
 }
 
-header {
+body > header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     padding: 1.5rem 0 0;
+    background: rgba(235, 228, 218, 0.94);
+    backdrop-filter: blur(12px);
 }
 
 .navbar {
@@ -546,34 +551,53 @@ header {
     margin: 3.25rem 0 3.25rem;
 }
 
-.portfolio-gallery__grid {
-    column-count: 3;
-    column-gap: 18px;
+.portfolio-gallery__sections {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem 1.15rem;
     margin-top: 1.5rem;
+}
+
+.portfolio-service {
+    min-width: 0;
+    overflow: visible;
+    animation: popIn 0.6s ease-out both;
+}
+
+.portfolio-service h3 {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    letter-spacing: 0;
+}
+
+.portfolio-service__mosaic {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    min-height: 0;
 }
 
 .portfolio-gallery__item {
     margin: 0;
-    break-inside: avoid;
-    margin-bottom: 18px;
+    min-width: 0;
+    min-height: 0;
 }
 
 .portfolio-gallery__btn {
     width: 100%;
+    height: auto;
     display: block;
     padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 1.35rem;
     overflow: hidden;
-    box-shadow: var(--soft-shadow);
     background: #141414;
     cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .portfolio-gallery__btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 22px 36px rgba(0, 0, 0, 0.25);
     filter: brightness(1.02);
 }
 
@@ -961,14 +985,18 @@ header {
 }
 
 @media (max-width: 920px) {
-    .portfolio-gallery__grid {
-        column-count: 2;
+    .portfolio-gallery__sections {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 560px) {
-    .portfolio-gallery__grid {
-        column-count: 1;
+    .portfolio-gallery__sections {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-service__mosaic {
+        gap: 0.55rem;
     }
 }
 
